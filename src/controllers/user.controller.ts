@@ -86,6 +86,25 @@ class UserController {
       );
     }
   }
+
+  static async getUsers(req: Request, res: Response) {
+    try {
+      const users = await User.find().populate("role").exec();
+
+      if (users.length === 0) {
+        return responseModel.fail(req, res, { message: "No users found" }, 422);
+      }
+
+      return responseModel.success(req, res, { users }, 200);
+    } catch (error) {
+      return responseModel.fail(
+        req,
+        res,
+        { message: "Error al obtener los usuarios" },
+        500
+      );
+    }
+  }
 }
 
 export default UserController;

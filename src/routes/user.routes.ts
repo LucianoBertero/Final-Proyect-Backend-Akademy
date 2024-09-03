@@ -2,6 +2,8 @@ import { Router } from "express";
 import { check } from "express-validator";
 import validateFields from "../middleware/validate-fields.middleware";
 import UserController from "../controllers/user.controller";
+import { verifyJwt } from "../middleware/validate-jwt.middleware";
+import verifyRoles from "../middleware/validate-role.middleware";
 
 class UserRoutes {
   public router: Router;
@@ -25,6 +27,12 @@ class UserRoutes {
         validateFields,
       ],
       UserController.createUser
+    );
+
+    this.router.get(
+      "/getUsers",
+      [verifyJwt, verifyRoles(["admin"])],
+      UserController.getUsers
     );
   }
 }

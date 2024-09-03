@@ -29,8 +29,6 @@ class Server {
   }
 
   async dbConection() {
-    console.log(envs.MONGO_URL);
-    console.log(envs.MONGO_DB_NAME);
     await MongoDatabase.connect({
       dbName: envs.MONGO_DB_NAME,
       mongoUrl: envs.MONGO_URL,

@@ -37,8 +37,9 @@ class AuthController {
           400
         );
       }
+      console.log(user);
 
-      const token = await generateJWT(user.id.toString());
+      const token = await generateJWT(user.id.toString(), user.role.toString());
 
       return responseModel.success(req, res, { user, token });
     } catch (error) {

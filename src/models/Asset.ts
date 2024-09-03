@@ -18,6 +18,7 @@ const AssetSchema: Schema = new Schema({
     default: null,
   },
   assigned_date: { type: Date, default: Date.now },
+  isDeleted: { type: Boolean, default: false },
 });
 
 const Asset = mongoose.model<IAssets>("Asset", AssetSchema);

@@ -4,14 +4,14 @@ interface IUser extends Document {
   name: string;
   email: string;
   password: string;
-  role: string;
+  role: mongoose.Schema.Types.ObjectId;
 }
 
 const UserSchema: Schema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: Schema.Types.ObjectId, ref: "Role", default: null },
+  role: { type: Schema.Types.ObjectId, ref: "Role" },
 });
 
 UserSchema.method("toJSON", function (this: any) {
