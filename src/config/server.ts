@@ -8,6 +8,8 @@ import { MongoDatabase } from "./db/conection";
 import userRoutes from "../routes/user.routes";
 import authRoutes from "../routes/auth.routes";
 import assetRoutes from "../routes/assets.routes";
+import categoriesRoutes from "../routes/categories.routes";
+import employeeRoutes from "../routes/employee.routes";
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ class Server {
     auth: "/auth",
     users: "/user",
     asset: "/asset",
+    categories: "/categories",
+    employee: "/employee",
   };
 
   constructor() {
@@ -50,6 +54,8 @@ class Server {
     this.app.use(this.apiPaths.auth, authRoutes);
     this.app.use(this.apiPaths.asset, assetRoutes);
     this.app.use(this.apiPaths.users, userRoutes);
+    this.app.use(this.apiPaths.categories, categoriesRoutes);
+    this.app.use(this.apiPaths.employee, employeeRoutes);
     // this.app.use(this.apiPaths.employee, employeeRoutes);
     // this.app.use(this.apiPaths.position, positionRoutes);
     // this.app.use(this.apiPaths.recoverPass, recovePass);

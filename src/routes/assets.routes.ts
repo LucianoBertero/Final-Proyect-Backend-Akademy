@@ -2,6 +2,8 @@ import { Router } from "express";
 import { check } from "express-validator";
 import validateFields from "../middleware/validate-fields.middleware";
 import AssetController from "../controllers/asset.controller";
+import apicache from "apicache";
+export let cache = apicache.middleware;
 
 class AssetsRoutes {
   public router: Router;

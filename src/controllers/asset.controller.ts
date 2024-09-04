@@ -122,8 +122,11 @@ class AssetController {
   static async getAssets(req: Request, res: Response) {
     try {
       const { page = 1, limit = 10 } = req.query;
-      const pageNumber = parseInt(page as string, 10);
-      const limitNumber = parseInt(limit as string, 10);
+      let pageNumber = parseInt(page as string, 10);
+      let limitNumber = parseInt(limit as string, 10);
+
+      if (pageNumber < 1) pageNumber = 1;
+      if (limitNumber < 1) limitNumber = 10;
 
       const skip = (pageNumber - 1) * limitNumber;
 

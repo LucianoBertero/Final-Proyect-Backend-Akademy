@@ -89,13 +89,33 @@ class UserController {
 
   static async getUsers(req: Request, res: Response) {
     try {
-      const users = await User.find().populate("role").exec();
+      const { page = 1, limit = 10 } = req.query;
+      let pageNumber = parseInt(page as string, 10);
+      let limitNumber = parseInt(limit as string, 10);
 
+      if (pageNumber < 1) pageNumber = 1;
+      if (limitNumber < 1) limitNumber = 10;
+
+      const skip = (pageNumber - 1) * limitNumber;
+
+      const users = await User.find()
+        .populate("role")
+        .skip(skip)
+        .limit(limitNumber);
+
+      const totalUser = await User.countDocuments();
+
+      const totalPages = Math.ceil(totalUser / limitNumber);
       if (users.length === 0) {
         return responseModel.fail(req, res, { message: "No users found" }, 422);
       }
 
-      return responseModel.success(req, res, { users }, 200);
+      return responseModel.success(
+        req,
+        res,
+        { users, totalPages, currentPage: pageNumber, totalUser },
+        200
+      );
     } catch (error) {
       return responseModel.fail(
         req,

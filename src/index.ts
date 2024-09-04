@@ -3,6 +3,7 @@ import Server from "./config/server";
 // import Employee from "./models/Employee";
 // import Category from "./models/Category";
 // import { Role } from "./models/Role";
+
 const server = new Server();
 server.listen();
 

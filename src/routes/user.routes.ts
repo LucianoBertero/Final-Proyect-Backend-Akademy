@@ -4,6 +4,8 @@ import validateFields from "../middleware/validate-fields.middleware";
 import UserController from "../controllers/user.controller";
 import { verifyJwt } from "../middleware/validate-jwt.middleware";
 import verifyRoles from "../middleware/validate-role.middleware";
+import apicache from "apicache";
+export let cache = apicache.middleware;
 
 class UserRoutes {
   public router: Router;
@@ -31,7 +33,8 @@ class UserRoutes {
 
     this.router.get(
       "/getUsers",
-      [verifyJwt, verifyRoles(["admin"])],
+      // [verifyJwt, verifyRoles(["admin"])],
+      [],
       UserController.getUsers
     );
   }
