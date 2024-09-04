@@ -1,6 +1,8 @@
 import { Router } from "express";
 import RoleController from "../controllers/role.controller";
 import apicache from "apicache";
+import { verifyJwt } from "../middleware/validate-jwt.middleware";
+import verifyRoles from "../middleware/validate-role.middleware";
 export let cache = apicache.middleware;
 
 class RolesRoutes {
@@ -14,7 +16,7 @@ class RolesRoutes {
   private initializeRoutes() {
     this.router.get(
       "/getAllRoles",
-      [cache("5 minutes")],
+      [cache("5 minutes"), verifyJwt, verifyRoles(["admin", "user"])],
       RoleController.getRoles
     );
   }

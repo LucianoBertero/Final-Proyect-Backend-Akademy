@@ -1,6 +1,8 @@
 import { Router } from "express";
 import CategoriesController from "../controllers/categories.controller";
 import apicache from "apicache";
+import verifyRoles from "../middleware/validate-role.middleware";
+import { verifyJwt } from "../middleware/validate-jwt.middleware";
 export let cache = apicache.middleware;
 
 class CategoriesRoutes {
@@ -14,7 +16,7 @@ class CategoriesRoutes {
   private initializeRoutes() {
     this.router.get(
       "/getAllCategories",
-      [cache("5 minutes")],
+      [cache("5 minutes"), verifyJwt, verifyRoles(["admin", "user"])],
       CategoriesController.getCategories
     );
   }

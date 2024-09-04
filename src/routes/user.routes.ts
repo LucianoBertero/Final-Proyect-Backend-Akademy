@@ -27,6 +27,8 @@ class UserRoutes {
         ).isLength({ min: 6 }),
         check("role", "Role is required").notEmpty(),
         validateFields,
+        verifyJwt,
+        verifyRoles(["admin"]),
       ],
       UserController.createUser
     );
@@ -34,7 +36,7 @@ class UserRoutes {
     this.router.get(
       "/getUsers",
       // [verifyJwt, verifyRoles(["admin"])],
-      [],
+      [verifyJwt, verifyRoles(["admin"])],
       UserController.getUsers
     );
   }

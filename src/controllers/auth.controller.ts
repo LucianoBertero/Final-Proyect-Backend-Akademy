@@ -37,7 +37,17 @@ class AuthController {
         );
       }
 
-      const token = await generateJWT(user.id.toString(), user.role.toString());
+      const role = await Role.findById(user.role).exec();
+      if (!role) {
+        return responseModel.fail(
+          req,
+          res,
+          { message: "Rol no encontrado" },
+          400
+        );
+      }
+      console.log(role);
+      const token = await generateJWT(user.id.toString(), role.name.toString());
 
       return responseModel.success(req, res, { user, token });
     } catch (error) {

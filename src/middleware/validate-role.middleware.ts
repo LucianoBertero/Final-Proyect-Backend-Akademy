@@ -2,14 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import responseModel from "../helpers/response.model";
 
 const roles = {
-  admin: "66d601e54c03989df60090b4",
-  user: "66d601e54c03989df60090b5",
+  admin: "admin",
+  user: "user",
 };
 
 const verifyRoles = (allowedRoles: string[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const uid = req.uid;
-
+    console.log("entro");
     const roleId = req.role;
 
     if (!uid || !roleId) {
