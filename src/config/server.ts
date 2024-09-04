@@ -10,6 +10,7 @@ import authRoutes from "../routes/auth.routes";
 import assetRoutes from "../routes/assets.routes";
 import categoriesRoutes from "../routes/categories.routes";
 import employeeRoutes from "../routes/employee.routes";
+import roleRoutes from "../routes/role.routes";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ class Server {
     asset: "/asset",
     categories: "/categories",
     employee: "/employee",
+    roles: "/roles",
   };
 
   constructor() {
@@ -56,6 +58,7 @@ class Server {
     this.app.use(this.apiPaths.users, userRoutes);
     this.app.use(this.apiPaths.categories, categoriesRoutes);
     this.app.use(this.apiPaths.employee, employeeRoutes);
+    this.app.use(this.apiPaths.roles, roleRoutes);
     // this.app.use(this.apiPaths.employee, employeeRoutes);
     // this.app.use(this.apiPaths.position, positionRoutes);
     // this.app.use(this.apiPaths.recoverPass, recovePass);

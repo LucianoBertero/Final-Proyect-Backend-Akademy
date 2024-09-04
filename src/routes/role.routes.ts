@@ -1,10 +1,9 @@
 import { Router } from "express";
-import EmployeeController from "../controllers/employe.controller";
-
+import RoleController from "../controllers/role.controller";
 import apicache from "apicache";
 export let cache = apicache.middleware;
 
-class EmployeeRoutes {
+class RolesRoutes {
   public router: Router;
 
   constructor() {
@@ -14,11 +13,11 @@ class EmployeeRoutes {
 
   private initializeRoutes() {
     this.router.get(
-      "/getAllEmployees",
+      "/getAllRoles",
       [cache("5 minutes")],
-      EmployeeController.getEmployees
+      RoleController.getRoles
     );
   }
 }
 
-export default new EmployeeRoutes().router;
+export default new RolesRoutes().router;

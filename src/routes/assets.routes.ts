@@ -2,8 +2,6 @@ import { Router } from "express";
 import { check } from "express-validator";
 import validateFields from "../middleware/validate-fields.middleware";
 import AssetController from "../controllers/asset.controller";
-import apicache from "apicache";
-export let cache = apicache.middleware;
 
 class AssetsRoutes {
   public router: Router;
@@ -21,8 +19,8 @@ class AssetsRoutes {
 
         check("description", "Please include a description").notEmpty(),
         check("category", "Please include a category").notEmpty(),
-        check("assigned_employee"),
-        check("assigned_date", ""),
+        check("asigned_employee").notEmpty(),
+        check("asigned_date", "").notEmpty(),
 
         validateFields,
       ],

@@ -9,9 +9,10 @@ import responseModel from "../helpers/response.model";
 
 class AssetController {
   static async registerAsset(req: Request, res: Response) {
-    const { name, description, category, assigned_employee, assigned_date } =
+    const { name, description, category, asigned_employee, assigned_date } =
       req.body;
 
+    console.log(asigned_employee);
     const session = await mongoose.startSession();
     session.startTransaction();
 
@@ -52,31 +53,26 @@ class AssetController {
         );
       }
 
-      // Validar y obtener el empleado asignado (si se proporciona)
-      let employeeId = null;
-      if (assigned_employee) {
-        if (!mongoose.Types.ObjectId.isValid(assigned_employee)) {
-          return responseModel.fail(
-            req,
-            res,
-            { message: "Invalid employee ID" },
-            422
-          );
-        }
-        const existingEmployee = await Employee.findOne({
-          _id: assigned_employee,
-        }).session(session);
-        if (!existingEmployee) {
-          await session.abortTransaction();
-          session.endSession();
-          return responseModel.fail(
-            req,
-            res,
-            { message: "Employee not found" },
-            422
-          );
-        }
-        employeeId = existingEmployee._id;
+      if (!mongoose.Types.ObjectId.isValid(asigned_employee)) {
+        return responseModel.fail(
+          req,
+          res,
+          { message: "Invalid employee ID" },
+          422
+        );
+      }
+      const existingEmployee = await Employee.findOne({
+        _id: asigned_employee,
+      }).session(session);
+      if (!existingEmployee) {
+        await session.abortTransaction();
+        session.endSession();
+        return responseModel.fail(
+          req,
+          res,
+          { message: "Employee not found" },
+          422
+        );
       }
 
       // Manejo de la fecha asignada (si se proporciona)
@@ -98,7 +94,7 @@ class AssetController {
         name,
         description,
         category: existingCategory._id,
-        assigned_employee: employeeId,
+        assigned_employee: existingEmployee._id,
         assigned_date: assignedDate,
       });
 
