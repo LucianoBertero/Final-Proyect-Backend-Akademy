@@ -21,8 +21,8 @@ class AssetsRoutes {
 
         check("description", "Please include a description").notEmpty(),
         check("category", "Please include a category").notEmpty(),
-        check("asigned_employee").notEmpty(),
-        check("asigned_date", "").notEmpty(),
+        check("asigned_employee"),
+        check("asigned_date"),
 
         validateFields,
         verifyJwt,

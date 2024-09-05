@@ -9,15 +9,14 @@ import responseModel from "../helpers/response.model";
 
 class AssetController {
   static async registerAsset(req: Request, res: Response) {
-    const { name, description, category, asigned_employee, assigned_date } =
+    const { name, description, category, asigned_employee, asigned_date } =
       req.body;
 
-    console.log(asigned_employee);
+    console.log(asigned_date);
     const session = await mongoose.startSession();
     session.startTransaction();
 
     try {
-      // Verificar si el activo ya existe
       const existingAsset = await Asset.findOne({ name }).session(session);
       if (existingAsset) {
         await session.abortTransaction();
@@ -30,7 +29,6 @@ class AssetController {
         );
       }
 
-      // Validar y obtener la categoría
       if (!mongoose.Types.ObjectId.isValid(category)) {
         return responseModel.fail(
           req,
@@ -53,32 +51,37 @@ class AssetController {
         );
       }
 
-      if (!mongoose.Types.ObjectId.isValid(asigned_employee)) {
-        return responseModel.fail(
-          req,
-          res,
-          { message: "Invalid employee ID" },
-          422
-        );
-      }
-      const existingEmployee = await Employee.findOne({
-        _id: asigned_employee,
-      }).session(session);
-      if (!existingEmployee) {
-        await session.abortTransaction();
-        session.endSession();
-        return responseModel.fail(
-          req,
-          res,
-          { message: "Employee not found" },
-          422
-        );
+      let employeeId = null;
+      if (asigned_employee) {
+        if (!mongoose.Types.ObjectId.isValid(asigned_employee)) {
+          await session.abortTransaction();
+          session.endSession();
+          return responseModel.fail(
+            req,
+            res,
+            { message: "Invalid employee ID" },
+            422
+          );
+        }
+        const existingEmployee = await Employee.findOne({
+          _id: asigned_employee,
+        }).session(session);
+        if (!existingEmployee) {
+          await session.abortTransaction();
+          session.endSession();
+          return responseModel.fail(
+            req,
+            res,
+            { message: "Employee not found" },
+            422
+          );
+        }
+        employeeId = existingEmployee._id;
       }
 
-      // Manejo de la fecha asignada (si se proporciona)
       let assignedDate = null;
-      if (assigned_date) {
-        assignedDate = new Date(assigned_date);
+      if (asigned_date) {
+        assignedDate = new Date(asigned_date);
         if (isNaN(assignedDate.getTime())) {
           return responseModel.fail(
             req,
@@ -94,7 +97,7 @@ class AssetController {
         name,
         description,
         category: existingCategory._id,
-        assigned_employee: existingEmployee._id,
+        assigned_employee: employeeId,
         assigned_date: assignedDate,
       });
 
@@ -245,6 +248,13 @@ class AssetController {
       assigned_date,
       isDeleted,
     } = req.body;
+    console.log(
+      "🚀 ~ AssetController ~ updateAsset ~name",
+      description,
+      category,
+      assigned_employee,
+      assigned_date
+    );
 
     try {
       if (!mongoose.Types.ObjectId.isValid(id)) {
