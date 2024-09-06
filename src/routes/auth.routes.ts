@@ -19,7 +19,6 @@ class AuthRoutes {
         check("password", "Password must be at least 6 characters long")
           .isLength({ min: 6 })
           .notEmpty(),
-
         validateFields,
       ],
       AuthController.login

@@ -18,12 +18,10 @@ class AssetsRoutes {
       "/registerAsset",
       [
         check("name", "Please include name").notEmpty(),
-
         check("description", "Please include a description").notEmpty(),
         check("category", "Please include a category").notEmpty(),
         check("asigned_employee"),
         check("asigned_date"),
-
         validateFields,
         verifyJwt,
         verifyRoles(["admin", "user"]),
@@ -39,7 +37,7 @@ class AssetsRoutes {
 
     this.router.put(
       "/deletedAsset/:id",
-      [verifyJwt, verifyRoles(["admin", "user"])],
+      [verifyJwt, verifyRoles(["admin"])],
       AssetController.deletedAsset
     );
 
@@ -67,7 +65,7 @@ class AssetsRoutes {
 
     this.router.put(
       "/restoreAsset/:id",
-      [verifyJwt, verifyRoles(["admin", "user"])],
+      [verifyJwt, verifyRoles(["admin"])],
       AssetController.restoreAsset
     );
   }
