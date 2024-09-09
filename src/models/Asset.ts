@@ -4,7 +4,7 @@ interface IAssets extends Document {
   name: string;
   description: string;
   category: Types.ObjectId;
-  assigned_employee?: Types.ObjectId | null; // Opcional y puede ser null
+  assigned_employee?: Types.ObjectId | null;
   assigned_date?: Date | null;
 }
 

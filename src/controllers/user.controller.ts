@@ -5,25 +5,6 @@ import { Response } from "express";
 import bcrypt from "bcrypt";
 import responseModel from "../helpers/response.model";
 import { Role } from "../models/Role";
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: API for managing users
- */
-
-/**
- * @swagger
- * /user:
- *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     responses:
- *       200:
- *         description: Successful response
- *       500:
- *         description: Server error
- */
 
 class UserController {
   static async createUser(req: Request, res: Response) {

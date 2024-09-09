@@ -9,8 +9,6 @@ export class MongoDatabase {
   static async connect(options: Options) {
     const { mongoUrl, dbName } = options;
 
-    console.log("entro aca", dbName, mongoUrl);
-
     try {
       await mongoose.connect(mongoUrl, {
         dbName,

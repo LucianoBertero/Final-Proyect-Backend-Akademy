@@ -12,7 +12,6 @@ class AssetController {
     const { name, description, category, asigned_employee, asigned_date } =
       req.body;
 
-    console.log(asigned_date);
     const session = await mongoose.startSession();
     session.startTransaction();
 
@@ -92,7 +91,6 @@ class AssetController {
         }
       }
 
-      // Crear y guardar el nuevo activo
       const newAsset = new Asset({
         name,
         description,
