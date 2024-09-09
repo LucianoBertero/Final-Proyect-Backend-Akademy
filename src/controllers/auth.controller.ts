@@ -12,7 +12,7 @@ import IUser from "../interface/user.interface";
 class AuthController {
   static async login(req: Request, res: Response) {
     const { email, password } = req.body;
-    console.log(email, password);
+
     try {
       const user = (await User.findOne({
         email: email,
@@ -47,12 +47,10 @@ class AuthController {
           400
         );
       }
-      console.log(role);
       const token = await generateJWT(user.id.toString(), role.name.toString());
 
       return responseModel.success(req, res, { user, token });
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,

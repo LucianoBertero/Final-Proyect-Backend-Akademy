@@ -9,7 +9,6 @@ const roles = {
 const verifyRoles = (allowedRoles: string[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const uid = req.uid;
-    console.log("entro");
     const roleId = req.role;
 
     if (!uid || !roleId) {
@@ -46,7 +45,6 @@ const verifyRoles = (allowedRoles: string[]) => {
 
       next();
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,

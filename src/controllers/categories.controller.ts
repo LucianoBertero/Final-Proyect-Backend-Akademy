@@ -19,7 +19,6 @@ class CategoriesController {
         );
       }
 
-      console.log(categories);
       return responseModel.success(req, res, { categories });
     } catch (error) {
       return responseModel.fail(

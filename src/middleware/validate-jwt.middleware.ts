@@ -12,7 +12,6 @@ export const verifyJwt = (
   res: Response,
   next: NextFunction
 ) => {
-  // Obtener el token del encabezado 'x-token'
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {

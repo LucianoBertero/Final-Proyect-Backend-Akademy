@@ -152,7 +152,6 @@ class AssetController {
         200
       );
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,
@@ -181,7 +180,6 @@ class AssetController {
 
       return responseModel.success(req, res, { assets }, 200);
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,
@@ -192,7 +190,6 @@ class AssetController {
   }
 
   static async deletedAsset(req: Request, res: Response) {
-    console.log("entro");
     const { id } = req.params;
 
     try {
@@ -226,7 +223,6 @@ class AssetController {
         200
       );
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,
@@ -246,13 +242,6 @@ class AssetController {
       assigned_date,
       isDeleted,
     } = req.body;
-    console.log(
-      "🚀 ~ AssetController ~ updateAsset ~name",
-      description,
-      category,
-      assigned_employee,
-      assigned_date
-    );
 
     try {
       if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -341,7 +330,6 @@ class AssetController {
         200
       );
     } catch (error) {
-      console.log(error);
       return responseModel.fail(
         req,
         res,
