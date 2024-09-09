@@ -14,6 +14,22 @@ class RolesRoutes {
   }
 
   private initializeRoutes() {
+    /**
+     * @openapi
+     * /roles/getAllRoles:
+     *   get:
+     *     summary: Obtener todos los roles
+     *     description: Obtiene una lista de todos los roles en el sistema.
+     *     security:
+     *       - BearerAuth: []
+     *     responses:
+     *       200:
+     *         description: Lista de roles obtenida exitosamente
+     *       401:
+     *         description: No autorizado
+     *     tags:
+     *       - Roles
+     */
     this.router.get(
       "/getAllRoles",
       [cache("5 minutes"), verifyJwt, verifyRoles(["admin", "user"])],

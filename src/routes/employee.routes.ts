@@ -15,6 +15,22 @@ class EmployeeRoutes {
   }
 
   private initializeRoutes() {
+    /**
+     * @openapi
+     * /employee/getAllEmployees:
+     *   get:
+     *     summary: Obtener todos los empleados
+     *     description: Obtiene una lista de todos los empleados en el sistema.
+     *     security:
+     *       - BearerAuth: []
+     *     responses:
+     *       200:
+     *         description: Lista de empleados obtenida exitosamente
+     *       401:
+     *         description: No autorizado
+     *     tags:
+     *       - Employees
+     */
     this.router.get(
       "/getAllEmployees",
       [cache("5 minutes"), verifyJwt, verifyRoles(["admin", "user"])],

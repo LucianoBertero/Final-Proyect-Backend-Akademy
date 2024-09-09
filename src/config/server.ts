@@ -1,8 +1,8 @@
+import swaggerUI from "swagger-ui-express";
 import express, { Application } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { envs } from "./envs";
-import mongoose from "mongoose";
 import morgan from "morgan";
 import { MongoDatabase } from "./db/conection";
 import userRoutes from "../routes/user.routes";
@@ -11,6 +11,7 @@ import assetRoutes from "../routes/assets.routes";
 import categoriesRoutes from "../routes/categories.routes";
 import employeeRoutes from "../routes/employee.routes";
 import roleRoutes from "../routes/role.routes";
+import specs from "./swagger/swagger";
 
 dotenv.config();
 
@@ -50,6 +51,7 @@ class Server {
     this.app.use(cors());
     this.app.use(morgan("dev"));
     this.app.use(express.json());
+    this.app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
   }
 
   routes() {
@@ -59,9 +61,6 @@ class Server {
     this.app.use(this.apiPaths.categories, categoriesRoutes);
     this.app.use(this.apiPaths.employee, employeeRoutes);
     this.app.use(this.apiPaths.roles, roleRoutes);
-    // this.app.use(this.apiPaths.employee, employeeRoutes);
-    // this.app.use(this.apiPaths.position, positionRoutes);
-    // this.app.use(this.apiPaths.recoverPass, recovePass);
   }
 }
 

@@ -14,6 +14,23 @@ class CategoriesRoutes {
   }
 
   private initializeRoutes() {
+    /**
+     * @openapi
+     * /categories/getAllCategories:
+     *   get:
+     *     summary: Obtener todas las categorías
+     *     description: Obtiene una lista de todas las categorías disponibles en el sistema.
+     *     security:
+     *       - BearerAuth: []
+     *     responses:
+     *       200:
+     *         description: Lista de categorías obtenida exitosamente
+     *       401:
+     *         description: No autorizado
+     *     tags:
+     *       - Categories
+     */
+
     this.router.get(
       "/getAllCategories",
       [cache("5 minutes"), verifyJwt, verifyRoles(["admin", "user"])],
