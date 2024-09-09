@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "040746b2-3265-45e8-b74a-f3e4d2718fd6",
+		"name": "Proyecto Final Vortex IT\\",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14712359",
+		"_collection_link": "https://luchobertero.postman.co/workspace/New-Team-Workspace~a935545d-97f5-4c85-bbc9-23ea499e84e6/collection/14712359-040746b2-3265-45e8-b74a-f3e4d2718fd6?action=share&source=collection_link&creator=14712359"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Registar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Lucianosss\",\r\n    \"email\":\"luchobeSSrtsero@gmail.comss\",\r\n    \"password\":\"12345678\",\r\n    \"role\":\"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/newUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"newUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar Sesion Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"luchobertero@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Iniciar Sesion User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"luchobertero@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/auth/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Usuarios",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/user/getUsers?limit=10&page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"getUsers"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assets",
+			"item": [
+				{
+					"name": "Obtener Todos los Assets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Baerrer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU4NDYyMDgsImV4cCI6MTcyNTg4MjIwOH0.fAuMQulIwA0tYBQxI7_xkWqf0rwT6Ck420TIsDWEmmc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/asset/getAssets?limit=10&page=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"getAssets"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Asset",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearrer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ4YjE4MzhlZDg3MzUwZmVlN2Y5ZTIiLCJyb2xlIjoidXNlciIsImlhdCI6MTcyNTY0Njk5NiwiZXhwIjoxNzI1NjgyOTk2fQ.jBccNHEYFMUNHCf-VQ5hu0WSpRztM9jY7su97WkUk_Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/asset/deletedAsset/66d61a90c1697334587bc79d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"deletedAsset",
+								"66d61a90c1697334587bc79d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurar Asset",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/asset/restoreAsset/66d61a90c1697334587bc79d?Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"restoreAsset",
+								"66d61a90c1697334587bc79d"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener detalle de Asset",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/asset/getAsset/66d61a90c1697334587bc79d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"getAsset",
+								"66d61a90c1697334587bc79d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Asset",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"Maousesss\",\r\n    \"category\":\"66d5ff429657f95768952255\",\r\n    \"assigned_employee\":\"66d5ff429657f9576895225a\",\r\n    \"assigned_date\":\"2024-07-20\",\r\n    \"name\":\"autoass\",\r\n    \"isDeleted\":true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/asset/updateAsset/66d61a90c1697334587bc79d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"updateAsset",
+								"66d61a90c1697334587bc79d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Asset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Barrer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg5MTIsImV4cCI6MTcyNTU5NDkxMn0.-nVzCGHsMLMQvNbPCXUNPwOjbAV2CXHpFZnMGx4ibCU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"Maouaesssssss\",\r\n    \"category\":\"66d5ff429657f95768952255\",\r\n    \"asigned_employee\":\"66d5ff429657f95768952259\",\r\n    \"asigned_date\":\"2024-07-20\",\r\n    \"name\":\"tabletssssdssasas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/asset/registerAsset",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"asset",
+								"registerAsset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Obtener todas las categorias",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empleado",
+			"item": [
+				{
+					"name": "Obtener Empleados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/employee/getAllEmployees",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employee",
+								"getAllEmployees"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Obtener todos los roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/roles/getAllRoles?Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"roles",
+								"getAllRoles"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NmQ2MDkzNWFiYzc5Njc2OWNiMDlkZjMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MjU1NTg3ODUsImV4cCI6MTcyNTU5NDc4NX0.uRNZfUc2hnay0-oUgqf8rgZHOud3IOHc4QsN1q6jfdg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
